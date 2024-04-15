@@ -24,7 +24,5 @@ def export_to_ometria(contacts_batch: List[Contact]):
 
     response = requests.post(OMETRIA_URL, json=payload, headers=headers)
 
-    if response.status_code == 200:
-        print('POST request successful!')
-    else:
+    if not 200 <= response.status_code < 300:
         raise Exception(f'POST request failed with status code {response.status_code}')

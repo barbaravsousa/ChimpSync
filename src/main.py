@@ -1,9 +1,13 @@
+import time
+
 from mailchimp.mailchimp_adapter import MailchimpAdapter
 from ometria.ometria_service import export_to_ometria
+from settings import SYNC_INTERVAL_HOURS, SYNC_PRECISION_SECONDS
 from sync_util import get_last_sync_time, update_last_sync_time
+import schedule
 
 
-def main():
+def sync_contacts():
     last_sync_time = get_last_sync_time()
     importer = MailchimpAdapter()
     failed_batches = []
@@ -20,5 +24,15 @@ def main():
         pass
 
 
+# Schedules the sync_contacts job to run every {SYNC_INTERVAL_HOURS}
+# with a precision of {SYNC_PRECISION_SECONDS}
+def setup_schedule():
+    schedule.every(SYNC_INTERVAL_HOURS).hours.do(sync_contacts)
+    while True:
+        schedule.run_pending()
+        time.sleep(SYNC_PRECISION_SECONDS)
+
+
 if __name__ == "__main__":
-    main()
+    sync_contacts()
+    setup_schedule()
