@@ -1,6 +1,7 @@
 from typing import List
 from pydantic import BaseModel
 
+
 class Contact(BaseModel):
     id: str
     firstname: str
@@ -8,9 +9,11 @@ class Contact(BaseModel):
     email: str
     status: str
 
+
 class ListOfContacts(BaseModel):
     id: str
     contacts: List[Contact]
+
 
 class ClientAccount(BaseModel):
     id: str

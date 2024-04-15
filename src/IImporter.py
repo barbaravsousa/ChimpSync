@@ -1,10 +1,8 @@
 from abc import ABC, abstractmethod
-from typing import List
-
-from models import ListOfContacts
+from datetime import datetime
 
 
 class IImporter(ABC):
     @abstractmethod
-    def get_contact_lists(self) -> List[ListOfContacts]:
+    def get_contact_lists(self, last_sync_time: str):
         pass
