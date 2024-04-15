@@ -1,12 +1,6 @@
-import os
-
-from dotenv import load_dotenv
-
 from mailchimp.mailchimp_adapter import MailchimpAdapter
 from ometria.ometria_service import export_to_ometria
 from sync_util import get_last_sync_time, update_last_sync_time
-
-load_dotenv()
 
 
 def main():

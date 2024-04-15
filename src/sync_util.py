@@ -8,7 +8,7 @@ def get_last_sync_time():
             last_sync_time = json.load(file)
             return datetime.fromisoformat(last_sync_time['last_sync'])
     except (FileNotFoundError, json.JSONDecodeError, KeyError):
-        return datetime.now() - timedelta(days=365)
+        return None
 
 
 def update_last_sync_time():

@@ -1,12 +1,8 @@
-import os
-from datetime import datetime
-from typing import List
 
 from IImporter import IImporter
 from mailchimp.mailchimp_mapper import parse_contact_list
 from mailchimp.mailchimp_service import MailchimpService
-
-BATCH_SIZE = os.getenv("BATCH_SIZE")
+from settings import BATCH_SIZE
 
 
 class MailchimpAdapter(IImporter):
@@ -18,7 +14,7 @@ class MailchimpAdapter(IImporter):
         all_lists = self.mailchimp_service.get_all_list()
         for contact_list in all_lists:
             list_id = contact_list["id"]
-            total_contacts = contact_list["member_count"]
+            total_contacts = contact_list["stats"]["member_count"]
             processed = 0
             while processed < total_contacts:
                 mailchimp_list_of_contacts = self.mailchimp_service.get_contacts_list(list_id, last_sync_time,

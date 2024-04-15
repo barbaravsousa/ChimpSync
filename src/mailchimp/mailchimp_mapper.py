@@ -1,6 +1,6 @@
-from typing import Dict
+from typing import Dict, List
 
-from models import Contact, ListOfContacts
+from models import Contact
 
 
 # Maps the Mailchimp contact to Contact type
@@ -17,9 +17,6 @@ def parse_contact(mailchimp_contact: Dict[str, any]) -> Contact:
     )
 
 
-# Maps the Mailchimp contact list to ListOfContacts type
-def parse_contact_list(mailchimp_contact_list: Dict[str, any]) -> ListOfContacts:
-    return ListOfContacts(
-        id=mailchimp_contact_list["list_id"],
-        contacts=[parse_contact(contact) for contact in mailchimp_contact_list["members"]]
-    )
+# Maps the Mailchimp contact list to a List<Contact>
+def parse_contact_list(mailchimp_contact_list: Dict[str, any]) -> List[Contact]:
+    return [parse_contact(contact) for contact in mailchimp_contact_list["members"]]
