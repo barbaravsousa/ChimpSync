@@ -13,3 +13,5 @@ API_KEY_MAILCHIMP = os.getenv("API_KEY_MAILCHIMP")
 
 SYNC_INTERVAL_HOURS = int(os.getenv("SYNC_INTERVAL"))
 SYNC_PRECISION_SECONDS = int(os.getenv("SYNC_PRECISION"))
+
+FAILED_BATCHES = "failed_batches_errors.txt"
