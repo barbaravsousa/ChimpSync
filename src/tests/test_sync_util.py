@@ -2,7 +2,9 @@ import json
 import unittest
 from datetime import datetime
 import os
+import sys
 
+print(sys.path)
 from sync_util import get_last_sync_time, update_last_sync_time
 
 
