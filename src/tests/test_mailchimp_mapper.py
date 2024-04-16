@@ -1,5 +1,5 @@
 import unittest
-from mailchimp.mailchimp_mapper import parse_contact, parse_contact_list
+from mailchimp.mailchimp_mapper import parse_contact, parse_contacts_list
 from models import Contact
 
 
@@ -54,9 +54,9 @@ class TestParsingMethods(unittest.TestCase):
             Contact(id="123", firstname="Iron", lastname="Man", email="ironman@gmail.com", status="subscribed"),
             Contact(id="456", firstname="", lastname="", email="peterparker@gmail.com", status="unsubscribed")
         ]
-        self.assertEqual(parse_contact_list(mailchimp_contact_list), expected_contacts)
+        self.assertEqual(parse_contacts_list(mailchimp_contact_list), expected_contacts)
 
     def test_parse_empty_list(self):
         mailchimp_contact_list = {"members": []}
         expected_contacts = []
-        self.assertEqual(parse_contact_list(mailchimp_contact_list), expected_contacts)
+        self.assertEqual(parse_contacts_list(mailchimp_contact_list), expected_contacts)

@@ -1,5 +1,5 @@
 from IImporter import IImporter
-from mailchimp.mailchimp_mapper import parse_contact_list
+from mailchimp.mailchimp_mapper import parse_contacts_list
 from mailchimp.mailchimp_service import MailchimpService
 from settings import BATCH_SIZE
 
@@ -24,5 +24,5 @@ class MailchimpAdapter(IImporter):
                 mailchimp_list_of_contacts = self.mailchimp_service.get_contacts_list(list_id, last_sync_time,
                                                                                       processed, BATCH_SIZE)
                 if mailchimp_list_of_contacts:
-                    yield parse_contact_list(mailchimp_list_of_contacts)
+                    yield parse_contacts_list(mailchimp_list_of_contacts)
                 processed += BATCH_SIZE
