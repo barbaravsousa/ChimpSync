@@ -1,10 +1,15 @@
+import logging
 import time
+import schedule
 
 from mailchimp.mailchimp_adapter import MailchimpAdapter
 from ometria.ometria_service import export_to_ometria
 from settings import SYNC_INTERVAL_HOURS, SYNC_PRECISION_SECONDS
 from sync_util import get_last_sync_time, update_last_sync_time
-import schedule
+
+# Configure logging
+logging.basicConfig(filename='app.log', level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
 
 
 def sync_contacts():
@@ -19,6 +24,8 @@ def sync_contacts():
         except Exception as e:
             print(f"Failed to send batch: {e}")
             failed_batches.append(contacts_batch)
+
+    logging.info(f'Contact lists exported to Ometria with {len(failed_batches)} failed batches')
 
     if failed_batches:
         pass
