@@ -29,6 +29,8 @@ Subsequent exports occur every 2 hours, ensuring that any new or updated contact
 
 ## How to run it locally 
 
+Before running the application locally, update the environmental variables accordingly. 
+
 ### Using Docker 
 
 **1) Docker Installation:** Ensure Docker is installed and running on your local machine. 

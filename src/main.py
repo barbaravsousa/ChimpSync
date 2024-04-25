@@ -43,7 +43,7 @@ def sync_contacts():
 # Schedules the sync_contacts job to run every {SYNC_INTERVAL_HOURS}
 # with a precision of {SYNC_PRECISION_SECONDS}
 def setup_schedule():
-    schedule.every(SYNC_INTERVAL_HOURS).minutes.do(sync_contacts)
+    schedule.every(SYNC_INTERVAL_HOURS).hours.do(sync_contacts)
     while True:
         schedule.run_pending()
         time.sleep(SYNC_PRECISION_SECONDS)
